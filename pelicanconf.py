@@ -7,7 +7,7 @@ SITENAME = 'iKlotho'
 SITEURL = ''
 
 PATH = 'content'
-THEME = 'C:\Users\umut\Documents\projects\~\pelican-themes\Flex'
+THEME = '~\pelican-themes\Flex'
 TIMEZONE = 'Europe/Istanbul'
 
 DEFAULT_LANG = 'English'
