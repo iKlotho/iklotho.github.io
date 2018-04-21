@@ -22,3 +22,5 @@ DELETE_OUTPUT_DIRECTORY = True
 
 #DISQUS_SITENAME = ""
 #GOOGLE_ANALYTICS = ""
+
+THEME = 'C:\Users\umut\Documents\projects\~\pelican-themes\Flex'
