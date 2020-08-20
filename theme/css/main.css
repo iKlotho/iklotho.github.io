@@ -13,6 +13,7 @@
 @import url("pygment.css");
 @import url("typogrify.css");
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
+@import url(https://fonts.googleapis.com/css2?family=Alata&display=swap)
 
 /***** Global *****/
 /* Body */
@@ -120,6 +121,14 @@ div.note {
    margin: 5px;
    font-size: 85%;
    max-width: 300px;
+}
+
+.post-title, .page-title {
+	font-size: 52px;
+	font-weight: 700;
+	margin: 15px 0;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 /* Tables */
@@ -450,3 +459,4 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	
 	#add-comment input[type='submit'] {float: right; margin: 0 .5em;}
 	#add-comment * {margin-bottom: .5em;}
+
