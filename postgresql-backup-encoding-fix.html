@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="english">
+
+<head>
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet'
+        type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="/theme/stylesheet/style.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/theme/pygments/github.min.css">
+    <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+
+    <meta name="author" content="Umut Kahriman" />
+    <meta name="description" content="" />
+    <meta property="og:site_name" content="iKlotho" />
+    <meta property="og:type" content="blog" />
+    <meta property="og:title" content="iKlotho" />
+    <meta property="og:description" content="" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="" />
+
+    <title>iKlotho</title>
+
+</head>
+
+<body>
+    <aside>
+        <div>
+            <a href="/">
+                <img src="/theme/img/pic.jpg" alt="" title="">
+            </a>
+            <h1 class="post-title"> UMUT KAHRIMAN </h1>
+
+            <p> Notes from surface. Mostly sharing gists and what it does.</p>
+
+            <nav>
+                <ul class="list">
+
+                    <li><a href="http://getpelican.com/" target="_blank">About</a></li>
+                </ul>
+            </nav>
+
+            <ul class="social">
+                <li><a class="sc-github" href="https://github.com/iKlotho" target="_blank">
+                        <i class="fa fa-github"></i>
+                    </a></li>
+            </ul>
+        </div>
+
+
+    </aside>
+    <main>
+
+
+
+
+        <article>
+            <header>
+                <h2><a href="/gevent-creating-progress-bar-with-tqdm"> Postgresql Backfup Fix Encoding </a></h2>
+                <p>
+                    Posted on 25-08-2020
+                </p>
+            </header>
+            <div class="content">
+                <p>
+                    Today I dumped some data from PostgreSQL's docker instance and when I try to restore it it brokes
+                    the data.
+                    After checking the dump's encoding via <a href="https://man7.org/linux/man-pages/man1/file.1.html"
+                        target="_blank">file</a> command, figured out that dump file has UTF-16 encoding. When
+                    converting dump file
+                    encoding to utf-8 using <a href="https://linux.die.net/man/1/iconv" target="_blank">iconv</a> it
+                    worked.
+                </p>
+                <br />
+                <br />
+
+                <script src="https://gist.github.com/iKlotho/e304e370eeca784b8334b15d9704f632.js"></script>
+            </div>
+
+
+        </article>
+
+
+
+
+
+        <footer>
+            <p>&copy; Umut Kahriman </p>
+            <p> Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a
+                    href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a
+                    href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+            </p>
+        </footer>
+    </main>
+
+
+
+
+
+    <script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " iKlotho ",
+  "url" : "https://iklotho.github.io/gevent-creating-progress-bar-with-tqdm.html",
+  "image": "",
+  "description": "Printing progress bar for gevent with tqdm"
+}
+</script>
+</body>
+
+</html>
