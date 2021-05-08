@@ -73,10 +73,14 @@
                 <p>
                     I just started to use <a href="https://architect.readthedocs.io/features/partition/" target="_blank">architect</a> to create partition on postgresql tables. To create a partition you either have to call below command from shell or
                     call after a migration.
+                    <br />
+                    <br />
                     <code>
                         architect partition --module path.to.the.model.module
-                    </code> To call partition on tables I created an app on project and connected my script to post_migrate signal using apps.py . It didn't worked as expected after searching the issue I found that post_migrate is
-                    different from signals and './manage.py' command will not execute the code from the apps.py files or the signals.py files. To fix the issue we need to place the signal function in models.py.
+                    </code>
+                    <br />
+                    <br /> To call partition on tables I created an app on project and connected my script to post_migrate signal using apps.py . It didn't worked as expected after searching the issue I found that post_migrate is different from signals
+                    and './manage.py' command will not execute the code from the apps.py files or the signals.py files. To fix the issue we need to place the signal function in models.py.
 
 
                 </p>
