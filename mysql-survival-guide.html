@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://iklotho.github.io/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="https://iklotho.github.io/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://iklotho.github.io/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://iklotho.github.io/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://iklotho.github.io/theme/font-awesome/css/solid.css">
+
+  <link rel="stylesheet" type="text/css" href="https://iklotho.github.io/static/custom.css">
+
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+
+
+
+
+ 
+
+<meta name="author" content="Umut KAHRIMAN" />
+<meta name="description" content="As I continue working with MySQL, I’ve come across a few quirks and issues that I wish I had known earlier. This blog post highlights some of the key lessons learned, and I will update it as I discover more interesting findings. The Upsert Problem: Auto-Increment ID Gaps When …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="iKlotho"/>
+  <meta property="og:title" content="MySQL Survival Guide"/>
+  <meta property="og:description" content="As I continue working with MySQL, I’ve come across a few quirks and issues that I wish I had known earlier. This blog post highlights some of the key lessons learned, and I will update it as I discover more interesting findings. The Upsert Problem: Auto-Increment ID Gaps When …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://iklotho.github.io/mysql-survival-guide.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-09-28 00:00:00+03:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://iklotho.github.io/author/umut-kahriman.html">
+  <meta property="article:section" content="misc"/>
+  <meta property="og:image" content="img/profile.png">
+
+  <title>iKlotho &ndash; MySQL Survival Guide</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="https://iklotho.github.io/">
+      <img src="img/profile.png" alt="" title="">
+    </a>
+
+    <h1>
+      <a href="https://iklotho.github.io/"></a>
+    </h1>
+
+    <p><h1>Umut KAHRIMAN</h1><p>Notes from surface. Mostly sharing gists and what it does.</p></p>
+
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-github"
+           href="https://github.com/iKlotho"
+           target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="mysql-survival-guide">MySQL Survival Guide</h1>
+    <p>
+      Posted on Sat 28 September 2024 in <a href="https://iklotho.github.io/category/misc.html">misc</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>As I continue working with MySQL, I’ve come across a few quirks and issues that I wish I had known earlier. This blog post highlights some of the key lessons learned, and I will update it as I discover more interesting findings.</p>
+<h3>The Upsert Problem: Auto-Increment ID Gaps</h3>
+<p>When performing an upsert (a combination of an insert and an update), MySQL can create gaps in auto-incremented IDs. This happens because failed insert attempts still consume an auto-increment ID. </p>
+<blockquote>
+<p>This behaviour is not applied to natural keys</p>
+</blockquote>
+<p>I wondered if the same issue exists in PostgreSQL and I created this little <a href="https://onecompiler.com/postgresql/42ffnyhhv">test</a> and behold, there is no garbage IDs.</p>
+<p>Possible Solutions:
+- Use PostgreSQL
+- Use BIGINT
+- https://www.percona.com/blog/avoiding-auto-increment-holes-on-innodb-with-insert-ignore</p>
+<h1>[stackoverflow](https://stackoverflow.com/questions/3679611/mysql-upsert-and-auto-increment-causes-gaps</h1>
+<p>)</p>
+<h3>AWS RDS MySQL: Non-Strict SQL Mode by Default</h3>
+<p>AWS RDS comes with non-strict <a href="https://dev.mysql.com/doc/refman/8.4/en/sql-mode.html">SQL Mode</a> causing errors such as overflow to raise warnings instead of errors. This issue can be fixed with settings SQL Mode after connecting to the RDS. </p>
+<p>I did a bit of googling and I found that someone else also encountered this issue and asked why this behaviour isn't implemented.
+https://github.com/awsdocs/amazon-rds-user-guide/issues/160</p>
+<p>You can check sql mode of the MySQL server by running the following query.</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="n">sql_mode</span><span class="p">;</span>
+</code></pre></div>
+
+<blockquote>
+<p>DBeaver sets <code>STRICT_TRANS_TABLES</code> flag to the connection by default.</p>
+</blockquote>
+<h3>ENUM Fields: Beware of Reordering</h3>
+<p>Using ENUM in MySQL has its own set of caveats. If you ever need to reorder ENUM values, it triggers a full table rebuild.
+p</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy;  </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " iKlotho ",
+  "url" : "https://iklotho.github.io",
+  "image": "img/profile.png",
+  "description": ""
+}
+</script>
+</body>
+</html>
