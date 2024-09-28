@@ -38,3 +38,4 @@ SELECT @@sql_mode;
 
 ### ENUM Fields: Beware of Reordering
 Using ENUM in MySQL has its own set of caveats. If you ever need to reorder ENUM values, it triggers a full table rebuild.
+p
