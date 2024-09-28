@@ -6,3 +6,6 @@
 *.out
 *.py[cod]
 output
+blog
+__pycache__
+.venv
