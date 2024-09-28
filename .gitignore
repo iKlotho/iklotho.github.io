@@ -1,0 +1,4 @@
+blog
+*.lock
+__pycache__
+.venv
