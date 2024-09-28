@@ -118,15 +118,13 @@
 </ul>
 <h3>AWS RDS MySQL: Non-Strict SQL Mode by Default</h3>
 <p>AWS RDS comes with non-strict <a href="https://dev.mysql.com/doc/refman/8.4/en/sql-mode.html">SQL Mode</a> causing errors such as overflow to raise warnings instead of errors. This issue can be fixed with settings SQL Mode after connecting to the RDS. </p>
-<p>I did a bit of googling and I found that someone else also encountered this issue and asked why this behaviour isn't implemented.
-https://github.com/awsdocs/amazon-rds-user-guide/issues/160</p>
+<p>I did a bit of googling and I found this <a href="https://github.com/awsdocs/amazon-rds-user-guide/issues/160">issue</a> someone else also encountered this issue and asked why this behaviour isn't implemented.</p>
 <p>You can check sql mode of the MySQL server by running the following query. DBeaver sets <code>STRICT_TRANS_TABLES</code> flag to the connection by default so its best to run this with <code>mysql</code> CLI.</p>
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="n">sql_mode</span><span class="p">;</span>
 </code></pre></div>
 
 <h3>ENUM Fields: Beware of Reordering</h3>
-<p>Using ENUM in MySQL has its own set of caveats. If you ever need to reorder ENUM values, it triggers a full table rebuild.
-p</p>
+<p>Using ENUM in MySQL has its own set of caveats. If you ever need to reorder ENUM values, it triggers a full table rebuild.</p>
   </div>
   <div class="tag-cloud">
     <p>
